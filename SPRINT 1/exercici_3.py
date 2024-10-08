@@ -1,22 +1,4 @@
 ## PROGRAMA COMPTES BANC!
-
-# Realitza un programa que administri els comptes d’un banc. Per a cada client s’ha de
-# guardar el nom, telèfon, email i la quantitat de diners. A més a més s’ha de mostrar un
-# menú amb les següents opcions:
-# ● Afegir un client
-# ● Llistar clients
-# ● Mostrar les dades d’un client amb la quantitat que te a plaç fix i estalviat
-# ● Bucar client
-# ● Modificar un client
-# ● Eliminar un client
-# El programa ha de tenir mínim una classe pare “Compte” i dos subclasses “Fixe” i “Estalvi”
-# i també un mètode per imprimir les dades de la clase “Compte”
-# La classe “Estalvi” tindrà un mètode per poder mostrar els estalvis. La classe “Fixe” tindrà
-# dos atributs propis, plaç i interès. Tindrà un mètode per a obtenir l’import de l'interès
-# (quantitat*interès/100) i un altre mètode per a mostrar la informació: dades del titular, plaç,
-# interès i total.
-# Crea almenys un objecte de cada subclasse.
-
 class Compte():
     def __init__(self, nom, telefon, mail, diners):
         self.client = nom
@@ -132,7 +114,6 @@ def buscar_client():
             return client
     else :
         return "Client no trobat."
-# falla : Diners nous no va be i crec que pots posar lo nom que vulgues
 def modificar_client():
     client_llistar()
     victima = input("Quin client vols modificar?").casefold()
@@ -143,26 +124,20 @@ def modificar_client():
             while True:
                 client.telefon = input("Telèfon nou: ")
                 if len(client.telefon) == 9 and client.telefon.isdigit():
-                    client.telefon = int(client.telefon)  #posarlo 
+                    client.telefon = int(client.telefon) 
                     break
                 else:
                     print("El telèfon ha de ser de 9 dígits i solament s'accepten números.")
         client.mail = input("Mail nou: ").casefold()
         while True:
-            try:
+            # try:
                 diners = float(input("Diners nous: ")) 
-                if diners >= 0:
+                if diners >= 0 and diners != str:
+                    client.diners = diners                    
                     break
                 else:
-                    print("El valor ha de ser major o igual a 0")
-            except:
-                return
-                print("El valor ha de ser un nombre amb o sense decimals.")  
-            # client.telefon = input("Canvi de telèfon")
-            # client.mail = input("Nou mail")
-            # client.diners = float(input("Quants diners té?"))
-            print("Les dades del client han estat modificades correctament.")
-            return
+                    print("El valor ha de ser major o igual a 0")           
+        return
     else:
         print("Client no trobat.")
 
@@ -171,14 +146,14 @@ def eliminar_client():
     for client in clients:
         if client.client == victima:
             clients.remove(client)
-            print(f'El client {client} ha segut borrat correctament.')
+            print(f'El client {client.client} ha segut borrat correctament.')
             return
         else:
             print("Aquest client no existeix.")
 
 # ELECCIÓ
-print(" 1. Agregar Client \n 2. Llistar els Clients. \n 3. Mostrar Fixe i Estalviat. \n 4. Buscar client. \n 5. Modificar client \n 6. Eliminar client. ")
 while True:
+    print(" 1. Agregar Client \n 2. Llistar els Clients. \n 3. Mostrar Fixe i Estalviat. \n 4. Buscar client. \n 5. Modificar client \n 6. Eliminar client. ")
     accio = input("Quina acció vols realitzar?")
     match accio:
         case "1":
@@ -205,4 +180,4 @@ while True:
             print("Sortint del programa.")
             break
         case _:
-            print("Opció no vàlida, torna-ho a intentar.")        
+            print("Opció no vàlida, torna-ho a intentar.")     
