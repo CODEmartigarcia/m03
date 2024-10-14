@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      {% for usuari in users %}
+      <li><a href="/usuaris/{{ loop.index0 }}">{{usuari.nom}} </a>{{usuari.cognom}} {{usuari.edat}} {{usuari.email}}</li>
+      {% else %}
+      <li>No hi ha usuaris.</li>
+      {% endfor %}
+      <!--Extrany l'endfor...-->
+    </ul>
+  </body>
+</html>
